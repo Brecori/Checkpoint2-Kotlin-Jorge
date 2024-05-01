@@ -23,22 +23,31 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome do produto" />
+        android:hint="Nome do produto"
+        android:inputType="textCapSentences"
+        android:layout_marginVertical="8dp"
+
+        />
     <EditText
         android:id="@+id/editValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:hint="Valor do produto" />
+        android:hint="Valor do produto"
+        android:layout_marginVertical="8dp"
+        />
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="inserir" />
+        android:text="inserir"
+        android:layout_marginVertical="8dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
 </LinearLayout>

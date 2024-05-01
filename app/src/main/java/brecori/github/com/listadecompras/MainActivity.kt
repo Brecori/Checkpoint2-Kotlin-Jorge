@@ -1,6 +1,9 @@
 package brecori.github.com.listadecompras
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.ComponentActivity
@@ -13,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.recyclerview.widget.RecyclerView
+import android.view.inputmethod.InputMethodManager
 import brecori.github.com.listadecompras.ui.theme.ListaDeComprasTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,14 +30,34 @@ class MainActivity : ComponentActivity() {
 
         val button = findViewById<Button>(R.id.button)
         val editText = findViewById<EditText>(R.id.editText)
+        val editValue = findViewById<EditText>(R.id.editValue)
+
+        fun hideKeyboard(context: Context, view: View) {
+            val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
 
         button.setOnClickListener {
-            val item = ItemModel(
-                    name = editText.text.toString()
-            )
 
-            itemsAdapter.addItem(item)
-            editText.setText("");
-    }
+            if (editText.text.isBlank()) {
+                editText.error = "Campo obrigatório"
+            }
+            else if(editValue.text.isBlank()) {
+                editValue.error = "Campo obrigatório"
+            }
+            else {
+                val item = ItemModel(
+                    name = editText.text.toString(),
+                    value = editValue.text.toString().toDouble()
+                )
+
+                itemsAdapter.addItem(item)
+                editText.setText("");
+                editValue.setText("");
+            }
+
+
+            hideKeyboard(this, it)
+        }
 }
 }
