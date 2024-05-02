@@ -50,4 +50,17 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalView"
+        android:text="Total: "
+        android:textAlignment="textEnd"
+        android:textSize="26sp"
+        android:paddingBottom="12dp"
+        android:textColor="#544541"
+        android:layout_gravity="end"
+        />
+
 </LinearLayout>

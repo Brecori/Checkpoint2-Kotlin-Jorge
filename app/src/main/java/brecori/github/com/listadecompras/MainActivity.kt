@@ -17,13 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.recyclerview.widget.RecyclerView
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import brecori.github.com.listadecompras.ui.theme.ListaDeComprasTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView);
         val itemsAdapter = ItemsAdapter()
         recyclerView.adapter = itemsAdapter
@@ -31,6 +31,8 @@ class MainActivity : ComponentActivity() {
         val button = findViewById<Button>(R.id.button)
         val editText = findViewById<EditText>(R.id.editText)
         val editValue = findViewById<EditText>(R.id.editValue)
+        val totalValue = findViewById<TextView>(R.id.totalView)
+
 
         fun hideKeyboard(context: Context, view: View) {
             val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
                 editValue.setText("");
             }
 
-
+            totalValue.text = "Total: R$ " + itemsAdapter.totalValue()
             hideKeyboard(this, it)
         }
 }

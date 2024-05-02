@@ -21,13 +21,20 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun totalValue(): Double{
+        var totalDaCompra: Double = 0.0;
+        for (item in items){
+            totalDaCompra += item.value
+        }
+        return totalDaCompra
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
         return ItemViewHolder(view)
     }
 
     override fun getItemCount(): Int = items.size
-
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = items[position]
 
