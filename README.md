@@ -35,4 +35,6 @@
 
 ### Por último as alterações feitas dentro da Main Activity
 
+#### Antes após inserido o item ele deixava ainda no campo, agora adicionamos a feature de após inserir limpar os campos
+
 ![Captura de tela 2024-05-01 235649](https://github.com/Brecori/Checkpoint2-Kotlin-Jorge/assets/103336938/4826b0a5-9cba-4c36-8bdc-f6235d3b5829)
