@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -41,21 +42,25 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         holder.bind(item)
 
         holder.buttonDelete.setOnClickListener {
-            removeItem(position)
+            removeItem(item)
         }
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewItem = view.findViewById<TextView>(R.id.textViewItem)
         val textViewValue = view.findViewById<TextView>(R.id.textViewValue)
-        val buttonDelete = view.findViewById<Button>(R.id.buttonDelete)
+        val buttonDelete = view.findViewById<ImageButton>(R.id.buttonDelete)
         fun bind(item: ItemModel) {
             textViewItem.text = item.name
             textViewValue.text = "R$" + item.value.toString()
+
+            buttonDelete.setOnClickListener {
+                item.onRemove(item)
+            }
         }
     }
-    fun removeItem(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
+    fun removeItem(item: ItemModel) {
+        items.remove(item)
+        notifyDataSetChanged()
     }
 }

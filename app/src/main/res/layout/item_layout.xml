@@ -34,15 +34,15 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/textViewItem"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonDelete"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:text="X"
             android:textAlignment="center"
             android:background="#FF0000"
+            android:src="@drawable/baseline_delete_24"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>

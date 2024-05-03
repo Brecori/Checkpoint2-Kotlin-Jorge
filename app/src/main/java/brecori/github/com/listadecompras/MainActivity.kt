@@ -1,19 +1,11 @@
 package brecori.github.com.listadecompras
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.recyclerview.widget.RecyclerView
 import android.view.inputmethod.InputMethodManager
@@ -41,21 +33,26 @@ class MainActivity : ComponentActivity() {
 
         button.setOnClickListener {
 
-            if (editText.text.isBlank()) {
+            if (editText.text.isEmpty()) {
                 editText.error = "Campo obrigatório"
+                return@setOnClickListener
             }
-            else if(editValue.text.isBlank()) {
+            else if(editValue.text.isEmpty()) {
                 editValue.error = "Campo obrigatório"
+                return@setOnClickListener
             }
             else {
                 val item = ItemModel(
                     name = editText.text.toString(),
-                    value = editValue.text.toString().toDouble()
+                    value = editValue.text.toString().toDouble(),
+                    onRemove = {
+                        itemsAdapter.removeItem(it)
+                    }
                 )
 
                 itemsAdapter.addItem(item)
-                editText.setText("");
-                editValue.setText("");
+                editText.text.clear();
+                editValue.text.clear();
             }
 
             totalValue.text = "Total: R$ " + itemsAdapter.totalValue()
